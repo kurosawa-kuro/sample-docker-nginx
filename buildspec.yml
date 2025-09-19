@@ -10,7 +10,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin <account-id>.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 889082311746.dkr.ecr.ap-northeast-1.amazonaws.com
+      - echo "=== index.html 内容確認 ==="
+      - cat index.html || echo "index.html が存在しません"
 
   build:
     commands:
@@ -22,9 +24,9 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Tagging image...
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG <account-id>.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG 889082311746.dkr.ecr.ap-northeast-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - echo Pushing image to ECR...
-      - docker push <account-id>.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push 889082311746.dkr.ecr.ap-northeast-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
 
 artifacts:
   files:
